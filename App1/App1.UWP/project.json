@@ -2,6 +2,7 @@
   "dependencies": {
     "FH.SDK": "1.3.4",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Unity": "4.0.1",
     "Xamarin.Forms": "2.0.0.6482"
   },
   "frameworks": {

@@ -12,16 +12,27 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FHSDKPortable;
 
 namespace App1.Windows
 {
     public sealed partial class MainPage
     {
+        private readonly App1.App _app;
+
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            LoadApplication(new App1.App());
+            _app = new App1.App();
+            LoadApplication(_app);
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await FHClient.Init();
+            _app.ProjectReady();
         }
     }
 }

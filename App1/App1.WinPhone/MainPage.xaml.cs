@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FHSDKPortable;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,13 +23,16 @@ namespace App1.WinPhone
     /// </summary>
     public sealed partial class MainPage
     {
+        private App1.App _app;
+
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            LoadApplication(new App1.App());
+            _app = new App1.App();
+            LoadApplication(_app);
         }
 
         /// <summary>
@@ -36,8 +40,10 @@ namespace App1.WinPhone
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
         /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            await FHClient.Init();
+            _app.ProjectReady();
             // TODO: Prepare page for display here.
 
             // TODO: If your application contains multiple pages, ensure that you are
